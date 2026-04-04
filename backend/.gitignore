@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Environment variables (IMPORTANT)
+.env
+
+# Django
+*.log
+db.sqlite3
+media/
+staticfiles/
+
+# Migrations (optional — keep if working in team)
+# */migrations/*
+# !*/migrations/__init__.py
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Pytest / coverage
+.coverage
+htmlcov/
+
+# Build files
+*.egg-info/
+dist/
+build/
+
+# Node (if React inside same repo)
+node_modules/
