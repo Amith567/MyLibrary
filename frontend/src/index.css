@@ -7,4 +7,19 @@
   .sec-btn{
     @apply p-24 bg-gray-800 text-emerald-200 hover:bg-gray-900 rounded-md text-xl font-bold;
   }
+    .form-page {
+    @apply min-h-screen bg-black text-gray-200 flex justify-center items-center p-5;
+  }
+
+  .form-box {
+    @apply bg-gray-800 p-6 rounded-xl w-full max-w-md shadow-lg flex flex-col gap-4;
+  }
+
+  .input-field {
+    @apply w-full p-3 rounded bg-gray-900 border border-gray-700 focus:outline-none focus:border-blue-500;
+  }
+
+  .btn {
+    @apply bg-blue-500 hover:bg-blue-600 transition duration-300 p-3 rounded font-semibold;
+  }
 }
