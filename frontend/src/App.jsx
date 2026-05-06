@@ -4,6 +4,10 @@ import HomePage from "./pages/HomePage";
 import Students from "./pages/Students";
 import Books from "./pages/Books";
 import Transactions from "./pages/Transactions";
+import StudentsAdd from "./pages/StudentsAdd";
+import StudentsList from "./pages/StudentsList";
+
+
 const App = () => {
   return (<>
     <BrowserRouter>
@@ -13,6 +17,8 @@ const App = () => {
         <Route path="/login" element={<AdminLogin />} />
         
         <Route path="/students" element={<Students/>}/>
+        <Route path="/students/add" element={<StudentsAdd/>} />
+        <Route path="/students/list" element={<StudentsList/>} />
 
         <Route path="/books" element={<Books/>}/>
 

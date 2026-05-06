@@ -8,10 +8,10 @@ const Navbar = () => {
   return (
     <>
     
-      <div className='w-full bg-blue-900 p-3 flex justify-between items-center fixed top-0'>
+      <div className='w-full bg-gray-900 p-3 flex justify-between items-center fixed top-0'>
 
-        <p className='text-3xl text-white font-bold cursor-pointer'>
-          <Link to="/home">MyLibrary</Link>
+        <p className='text-3xl text-gray-200 font-bold cursor-pointer'>
+          <Link to="/">MyLibrary</Link>
         </p>
 
         <div
@@ -24,7 +24,7 @@ const Navbar = () => {
       </div>
 
       {navBtn && (
-        <div className='w-full flex flex-col bg-gray-200 mt-16 p-4 gap-3'>
+        <div className='w-full flex flex-col bg-gray-800 mt-16 p-4 gap-3 text-gray-200'>
           <p>Home</p>
           <p>Profile</p>
           <p>Search</p>
