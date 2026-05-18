@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'dashboard',
     'student',
     'transaction',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
