@@ -10,7 +10,7 @@ const Books = () => {
             <div className='flex-1 flex justify-around items-center bg-black '>
                 <Link to="/books/add">
                 <div className='sec-btn'>Add Book</div></Link>
-               <Link to="books/list"> <div className='sec-btn'>List Books</div></Link>
+               <Link to="/books/list"> <div className='sec-btn'>List Books</div></Link>
             </div>
             <Footer/>
 
