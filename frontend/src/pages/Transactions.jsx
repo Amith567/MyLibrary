@@ -7,7 +7,8 @@ const Transactions = () => {
             <Navbar />
             <div className='flex-1 flex justify-around items-center bg-black'>
                 <div className='sec-btn'>Create Transaction</div>
-                <div className='sec-btn'>Close Transaction</div>
+                <div className='sec-btn'>Close Transaction</div>        
+                <div className='sec-btn'>Active Transactions</div>              
             </div>
             <Footer/>
 

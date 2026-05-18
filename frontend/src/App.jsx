@@ -2,10 +2,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AdminLogin from './pages/AdminLogin'
 import HomePage from "./pages/HomePage";
 import Students from "./pages/Students";
-import Books from "./pages/Books";
-import Transactions from "./pages/Transactions";
 import StudentsAdd from "./pages/StudentsAdd";
 import StudentsList from "./pages/StudentsList";
+import Books from "./pages/Books";
+import BooksAdd from "./pages/BooksAdd";
+import BooksList from "./pages/BooksList";
+import Transactions from "./pages/Transactions";
+
 
 
 const App = () => {
@@ -21,6 +24,9 @@ const App = () => {
         <Route path="/students/list" element={<StudentsList/>} />
 
         <Route path="/books" element={<Books/>}/>
+        <Route path="/books/add" element={<BooksAdd/>}/>
+        <Route path="/books/list" element={<BooksList/>}/>
+        
 
         <Route path='/transactions' element={<Transactions/>}/>
       </Routes>
