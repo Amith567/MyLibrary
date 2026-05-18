@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute";
+
 import AdminLogin from './pages/AdminLogin'
 import HomePage from "./pages/HomePage";
 import Students from "./pages/Students";
@@ -15,10 +17,11 @@ const App = () => {
   return (<>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage/>}/>
-
-        <Route path="/login" element={<AdminLogin />} />
         
+        <Route path="/login" element={<AdminLogin />}/>
+        
+        <Route element={<ProtectedRoute/>}>
+        <Route path="/" element={<HomePage/>}/>
         <Route path="/students" element={<Students/>}/>
         <Route path="/students/add" element={<StudentsAdd/>} />
         <Route path="/students/list" element={<StudentsList/>} />
@@ -27,8 +30,8 @@ const App = () => {
         <Route path="/books/add" element={<BooksAdd/>}/>
         <Route path="/books/list" element={<BooksList/>}/>
         
-
         <Route path='/transactions' element={<Transactions/>}/>
+        </Route>
       </Routes>
     </BrowserRouter>
     </>

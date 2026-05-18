@@ -1,12 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const AdminLogin = () => {
   const navigate=useNavigate('')
+  const [formData,setFormData]=useState(
+    {username:"",password:""})
+  
+  const handleChange=(e)=>{
+    setFormData({
+      ...formData,[e.target.name]:e.target.value
+    })}
+
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+
+        const response = await fetch(
+            "http://127.0.0.1:8000/auth/login/",
+            {
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body: JSON.stringify(formData)
+            }
+        );
+
+        const data = await response.json();
+
+        if(response.ok){
+            localStorage.setItem(
+                "user",
+                data.username
+            );
+
+            navigate("/");
+        }
+        else{
+            alert(data.error);
+        }
+    };
+
   return (
     <>
       <div className="flex flex-col md:flex-row h-screen">
-
         <section className="w-full md:w-1/2   flex items-center justify-center">
           <div className="p-5">
             <img
@@ -31,6 +67,7 @@ const AdminLogin = () => {
                   name="username"
                   placeholder="Enter your username"
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  onChange={handleChange}
                 />
               </div>
 
@@ -41,6 +78,7 @@ const AdminLogin = () => {
                   name="password"
                   placeholder="Enter your password"
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  onChange={handleChange}
                 />
               </div>
 
@@ -54,7 +92,7 @@ const AdminLogin = () => {
                 </a>
               </div>
 
-              <button type='button' className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition" onClick={()=>{navigate('/home')}}>
+              <button type='button' className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition" onClick={handleSubmit}>
                 Login
               </button>
 

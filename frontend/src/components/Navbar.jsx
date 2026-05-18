@@ -28,6 +28,7 @@ const Navbar = () => {
           <p>Home</p>
           <p>Profile</p>
           <p>Search</p>
+          <p onClick={localStorage.clear("isLoggined")}>Logout</p>
         </div>
       )}
 
