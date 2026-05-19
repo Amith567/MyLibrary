@@ -28,4 +28,4 @@ def login(request):
 
     if user is None:
         return Response({"error":"invalid credentials"},status=400)
-    return Response({"message":"user logged in succesfully !"},status=200)
+    return Response({"message":"user logged in succesfully !","username":user.username},status=200)
