@@ -25,7 +25,7 @@ const StudentsAdd = () => {
 
   return (
 
-    <div className='flex flex-col min-h-screen bg-black'>
+    <div className='flex flex-col min-h-screen bg-[#0F172A]'>
       <Navbar />
       <div className="form-page">
 

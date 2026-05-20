@@ -5,7 +5,7 @@ import Card from '../components/Card'
 
 const StudentsList = () => {
   return (
-    <div className="bg-black min-h-screen p-5 text-gray-200">
+    <div className="bg-[#0F172A] min-h-screen p-5 text-gray-200">
 
   <h1 className="text-2xl font-bold mb-5">
     Students List

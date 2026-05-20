@@ -7,7 +7,7 @@ const Books = () => {
     return (
         <div className='flex flex-col min-h-screen'>
             <Navbar />
-            <div className='flex-1 flex justify-around items-center bg-black '>
+            <div className='flex-1 flex justify-around items-center bg-[#0F172A] '>
                 <Link to="/books/add">
                 <div className='sec-btn'>Add Book</div></Link>
                <Link to="/books/list"> <div className='sec-btn'>List Books</div></Link>
