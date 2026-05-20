@@ -2,7 +2,20 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializer import StudentSerializer
 from .models import Student
+from django.shortcuts import get_object_or_404
 
+
+@api_view(['GET'])
+def list(request):
+    student=Student.objects.all()
+    serializer=StudentSerializer(student,many=True)
+    return Response(serializer.data,status=200)
+
+@api_view(['GET'])
+def detail(request,id):
+        student=get_object_or_404(Student,id=id)
+        serializer=StudentSerializer(student)
+        return Response(serializer.data)
 
 @api_view(['POST'])
 def add(request):

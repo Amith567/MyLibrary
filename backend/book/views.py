@@ -2,6 +2,13 @@ from rest_framework.decorators import api_view
 from .serializer import BookSerializer
 from .models import Book
 from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
+
+@api_view(['GET'])
+def list(request):
+    book=Book.objects.all()
+    serializer=BookSerializer(book,many=True)
+    return Response(serializer.data)
 
 @api_view(['POST'])
 def add(request):
