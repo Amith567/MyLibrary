@@ -1,44 +1,30 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import API from '../api/api'
+
 
 const AdminLogin = () => {
-  const navigate=useNavigate('')
-  const [formData,setFormData]=useState(
-    {username:"",password:""})
-  
-  const handleChange=(e)=>{
+  const navigate = useNavigate('')
+  const [formData, setFormData] = useState(
+    { username: "", password: "" })
+
+  const handleChange = (e) => {
     setFormData({
-      ...formData,[e.target.name]:e.target.value
-    })}
+      ...formData, [e.target.name]: e.target.value
+    })
+  }
 
-    const handleSubmit = async(e) => {
-        e.preventDefault();
-
-        const response = await fetch(
-            "http://127.0.0.1:8000/auth/login/",
-            {
-                method:"POST",
-                headers:{
-                    "Content-Type":"application/json"
-                },
-                body: JSON.stringify(formData)
-            }
-        );
-
-        const data = await response.json();
-
-        if(response.ok){
-            localStorage.setItem(
-                "user",
-                data.username
-            );
-
-            navigate("/");
-        }
-        else{
-            alert(data.error);
-        }
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res =await API.post("/auth/login/", formData)
+      localStorage.setItem("user", res.data.username)
+      navigate("/");
+    }
+    catch (error) {
+      alert(data.error);
+    }
+  };
 
   return (
     <>
