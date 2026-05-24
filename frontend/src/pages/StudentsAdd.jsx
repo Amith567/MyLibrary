@@ -25,9 +25,9 @@ const StudentsAdd = () => {
 
   return (
 
-    <div className='flex flex-col min-h-screen bg-[#0F172A]'>
+    <div className='flex flex-col min-h-screen '>
       <Navbar />
-      <div className="form-page">
+      <div className="form-page bg-[#0F172A]">
 
         <form className="form-box" onSubmit={handleSubmit}>
 
