@@ -5,17 +5,15 @@ import Navbar from "../components/Navbar"
 
 const Books = () => {
     return (
-        <div className='flex flex-col min-h-screen'>
+        <div className='main-div'>
             <Navbar />
-            <div className='flex-1 flex justify-around items-center bg-[#0F172A] '>
+            <div className='main-sec '>
                 <Link to="/books/add">
                 <div className='sec-btn'>Add Book</div></Link>
                <Link to="/books/list"> <div className='sec-btn'>List Books</div></Link>
             </div>
             <Footer/>
-
         </div>
     )
 }
-
 export default Books

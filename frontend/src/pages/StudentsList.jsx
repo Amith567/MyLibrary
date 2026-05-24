@@ -21,7 +21,7 @@ const StudentsList = () => {
   return (
     <div className="main-div">
       <Navbar/>
-      <h1 className="text-2xl font-bold mt-4 text-white text-center mt-24 ">Students List</h1>
+      <h1 className="text-2xl font-bold mt-4 text-white text-center pt-16 ">Students List</h1>
       <div className='main-sec-list'>
       {students.map((student)=>(<Card key={student.id} name={student.name} department={student.department} register_no={student.register_no} />))}
       </div>
