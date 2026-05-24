@@ -5,17 +5,15 @@ import { Link } from 'react-router-dom'
 
 const HomePage = () => {
   return (
-    <div className='flex flex-col min-h-screen'>
-<Navbar/>
-<div className='flex-1 flex justify-around items-center bg-[#0F172A]'>
-<Link to="/students"><div className='sec-btn'>Students</div></Link>
-<Link to="/books"><div className='sec-btn'>Books</div></Link>
-<Link to="/transactions"><div className='sec-btn'>Transactions</div></Link>
-</div>
-<Footer/>
-
+    <div className='main-div'>
+      <Navbar />
+      <div className='main-sec'>
+        <Link to="/students"><div className='sec-btn '>Students</div></Link>
+        <Link to="/books"><div className='sec-btn'>Books</div></Link>
+        <Link to="/transactions"><div className='sec-btn'>Transactions</div></Link>
+      </div>
+      <Footer />
     </div>
   )
 }
-
 export default HomePage

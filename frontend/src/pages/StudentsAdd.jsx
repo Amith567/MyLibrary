@@ -7,9 +7,9 @@ import API from '../api/api'
 const StudentsAdd = () => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({ name: "", admission_year: "", register_no: "", department: "", gender: "" })
+
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+  setFormData({ ...formData, [e.target.name]: e.target.value })}
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,27 +17,20 @@ const StudentsAdd = () => {
       const res = await API.post("student/add/", formData)
       window.alert("student added succesfully !")
       navigate("/")
-
     } catch (error) {
       alert(error.response?.data?.error || "something went wrong!")
     }
   }
 
   return (
-
-    <div className='flex flex-col min-h-screen '>
+    <div className='main-div'>
       <Navbar />
-      <div className="form-page bg-[#0F172A]">
+      <div className="main-sec">
 
         <form className="form-box" onSubmit={handleSubmit}>
-
-          <h1 className="text-2xl font-bold text-center">
-            Add Student
-          </h1>
-
+          <h1 className="form-heading">Add Student</h1>
           <div>
-            <label>Name</label>
-
+            <label className='input-label'>Name :</label>
             <input
               type="text"
               className="input-field"
@@ -47,8 +40,7 @@ const StudentsAdd = () => {
           </div>
 
           <div>
-            <label>Admission Year</label>
-
+            <label className='input-label'>Admission Year :</label>
             <input
               type="number"
               className="input-field"
@@ -58,8 +50,7 @@ const StudentsAdd = () => {
           </div>
 
           <div>
-            <label>Register Number</label>
-
+            <label className='input-label'>Register Number :</label>
             <input
               type="text"
               className="input-field"
@@ -69,13 +60,13 @@ const StudentsAdd = () => {
           </div>
 
           <div>
-            <label>Department</label>
-
+            <label className='input-label'>Department :</label>
             <select
               className="input-field"
               name="department"
               onChange={handleChange}
-            ><option value="" disabled>Select Department</option>
+            >
+              <option value="" disabled>Select Department</option>
               <option value="CSE">CSE</option>
               <option value="EC">EC</option>
               <option value="CE">CE</option>
@@ -85,17 +76,15 @@ const StudentsAdd = () => {
           </div>
 
           <div>
-            <label>Sex</label>
-
-            <div className="flex gap-5 mt-2">
-              <label>
+            <label className='input-label'>Sex : </label>
+            <div className="flex gap-3">
+              <label className='input-label'>
                 <input type="radio" name="gender" value="M" onChange={handleChange} /> Male
               </label>
-
-              <label>
+              <label className='input-label'>
                 <input type="radio" name="gender" value="F" onChange={handleChange} /> Female
               </label>
-              <label>
+              <label className='input-label'>
                 <input type="radio" name="gender" value="O" onChange={handleChange} /> Others
               </label>
             </div>
@@ -106,7 +95,6 @@ const StudentsAdd = () => {
           </button>
 
         </form>
-
       </div>
       <Footer />
     </div>

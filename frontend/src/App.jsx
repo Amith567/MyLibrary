@@ -6,11 +6,15 @@ import HomePage from "./pages/HomePage";
 import Students from "./pages/Students";
 import StudentsAdd from "./pages/StudentsAdd";
 import StudentsList from "./pages/StudentsList";
+
 import Books from "./pages/Books";
 import BooksAdd from "./pages/BooksAdd";
 import BooksList from "./pages/BooksList";
-import Transactions from "./pages/Transactions";
 
+import Transactions from "./pages/Transactions";
+import TransactionClose from "./pages/TransactionClose";
+import TransactionCreate from "./pages/TransactionCreate";
+import TransactionList from "./pages/TransactionList";
 
 
 const App = () => {
@@ -31,6 +35,9 @@ const App = () => {
         <Route path="/books/list" element={<BooksList/>}/>
         
         <Route path='/transactions' element={<Transactions/>}/>
+        <Route path='/transactions/list' element={<TransactionList/>}/>
+        <Route path='/transactions/create' element={<TransactionCreate/>}/>
+        <Route path='/transactions/close' element={<TransactionClose/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

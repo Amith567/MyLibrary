@@ -4,22 +4,43 @@
 
 /* your custom styles */
 @layer components {
+  .main-div{
+    @apply flex flex-col min-h-screen bg-[#0F172A]
+  }
+  .main-sec{
+    @apply flex-1  flex flex-col md:flex-row justify-center items-center gap-8
+  }
+  .main-sec-list{
+    @apply flex-1 bg-[#0F172A] flex flex-col gap-4 p-5; 
+  }
+
   .sec-btn{
-    @apply p-24 bg-[#334155] text-emerald-200 hover:bg-gray-600 rounded-md text-xl font-bold;
+    @apply px-10 py-8 bg-slate-700 text-emerald-200 hover:bg-slate-600 hover:scale-105 transition-all duration-300 
+    rounded-xl text-xl font-semibold w-48 text-center shadow-lg cursor-pointer;
   }
-    .form-page {
-    @apply min-h-screen bg-black text-gray-200 flex justify-center items-center p-5;
-  }
-
   .form-box {
-    @apply bg-gray-800 p-6 rounded-xl w-full max-w-md shadow-lg flex flex-col gap-4;
+    @apply bg-slate-600 p-6 rounded-xl w-full max-w-md shadow-lg flex flex-col gap-4 mt-8;
   }
-
+  .form-heading{
+    @apply text-2xl font-bold text-center text-white
+  }
+  .input-label{
+    @apply text-sm text-gray-300
+  }
   .input-field {
-    @apply w-full p-3 rounded bg-gray-900 border border-gray-700 focus:outline-none focus:border-blue-500;
+    @apply w-full px-3 py-2 rounded-md bg-gray-200 border border-gray-700 focus:outline-none focus:border-blue-500;
   }
-
   .btn {
-    @apply bg-blue-500 hover:bg-blue-600 transition duration-300 p-3 rounded font-semibold;
-  }
+    @apply bg-blue-600 text-white  rounded-md font-semibold px-3 py-2 hover:bg-blue-500 transition duration-300;
+  }  
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button{
+  -webkit-appearance:none;
+  margin:0;
+}
+
+input[type="number"]{
+  -moz-appearance:textfield;
 }

@@ -41,7 +41,7 @@ const AdminLogin = () => {
 
         <section className="w-full md:w-1/2  flex flex-col items-center justify-around">
           <p className='text-3xl font-bold'>Hi,<span className='text-gray-600'> Welcome to MyLibrary</span></p>
-          <form className="flex items-center justify-center bg-gray-100">
+          <form className="flex items-center justify-center bg-gray-100" onSubmit={handleSubmit}>
             <div className="w-full max-w-sm bg-white p-6 rounded-lg shadow-md">
 
 
@@ -78,7 +78,7 @@ const AdminLogin = () => {
                 </a>
               </div>
 
-              <button type='button' className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition" onClick={handleSubmit}>
+              <button type='button' className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
                 Login
               </button>
 

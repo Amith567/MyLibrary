@@ -4,16 +4,14 @@ import Navbar from "../components/Navbar"
 
 const Students = () => {
     return (
-        <div className='flex flex-col min-h-screen'>
+        <div className='main-div'>
             <Navbar />
-            <div className='flex-1 flex justify-around items-center bg-[#0F172A]'>
+            <div className='main-sec'>
                 <Link to="/students/add"><div className='sec-btn'>Add Student</div></Link>
-               <Link to="/students/list"> <div className='sec-btn'>List Students</div></Link>
+                <Link to="/students/list"> <div className='sec-btn'>List Students</div></Link>
             </div>
             <Footer />
-
         </div>
     )
 }
-
 export default Students

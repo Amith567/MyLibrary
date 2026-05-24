@@ -6,26 +6,27 @@ import API from '../api/api'
 
 const StudentsList = () => {
   const [students,setStudents]=useState([])
+
   useEffect(()=>{
     const fetchStudents=async()=>{
       try{
       const res=await API.get('/student/list/')
-    setStudents(res.data)
-  }catch(error){
-    alert(error.response?.data?.error || "something went wrong")
-  }
-    }
-    fetchStudents()
+      setStudents(res.data)
+      }catch(error){
+        alert(error.response?.data?.error || "something went wrong")
+      }}
+      fetchStudents()
   },[])
+
   return (
-    <div className="bg-[#0F172A] min-h-screen p-5 text-gray-200">
-
-  <h1 className="text-2xl font-bold mb-5">
-    Students List
-  </h1>
-  {students.map((student)=>(<Card key={student.id} name={student.name} department={student.department} register_no={student.register_no} />))}
-
-</div>
+    <div className="main-div">
+      <Navbar/>
+      <h1 className="text-2xl font-bold mt-4 text-white text-center mt-24 ">Students List</h1>
+      <div className='main-sec-list'>
+      {students.map((student)=>(<Card key={student.id} name={student.name} department={student.department} register_no={student.register_no} />))}
+      </div>
+      <Footer/>
+    </div>
   )
 }
 
