@@ -8,4 +8,5 @@ urlpatterns = [
     path('auth/',include('authentication.urls')),
     path('student/',include('student.urls')),
     path('book/',include('book.urls')),
+    path('transaction/',include('transaction.urls')),
 ]
