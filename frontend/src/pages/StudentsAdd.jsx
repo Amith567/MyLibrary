@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import toast from "react-hot-toast";
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { useNavigate } from 'react-router-dom'
@@ -49,7 +50,7 @@ const StudentsAdd = () => {
 
     try {
       const res = await API.post("student/add/", formData)
-      window.alert("student added succesfully !")
+      toast.success("Student added successfully!");
       navigate("/")
     } catch (error) {
   const errors = error.response?.data?.error;
