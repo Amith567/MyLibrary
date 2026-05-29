@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import API from '../api/api'
 
 const StudentsAdd = () => {
+  const [error,setError]=useState("")
   const navigate = useNavigate()
   const [formData, setFormData] = useState({ name: "", admission_year: "", register_no: "", department: "", gender: "" })
 
@@ -13,13 +14,50 @@ const StudentsAdd = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    const name=formData.name.trim()
+    if(!name){
+      setError("Name required !")
+      return
+    }
+    if(name.length>20){
+      setError("Maximum lenght of name is 20 !")
+      return
+    }
+    if(!/^[A-Za-z ]+$/.test(name)){
+      setError("Name can conatains only letters and space !")
+      return
+    }
+    if (!/^\d{4}$/.test(formData.admission_year)){
+      setError('Invalid year !')
+      return
+    }
+    if(!/^[A-Z]{3}\d{2}[A-Z]{2,3}\d{3}$/.test(formData.register_no)){
+      setError("Invalid register number format !. eg: AWH22CS001 ")
+      return
+    }
+    if(formData.department.length==0){
+      setError("Invalid department !")
+      return
+    }
+    if(formData.gender.length!=1){
+      setError("Invalid gender !")
+      return
+    }
+
+    setError("")
+
     try {
       const res = await API.post("student/add/", formData)
       window.alert("student added succesfully !")
       navigate("/")
     } catch (error) {
-      alert(error.response?.data?.error || "something went wrong!")
-    }
+  const errors = error.response?.data?.error;
+
+  if (errors?.register_no) {
+    setError(errors.register_no[0]);
+  }
+}
   }
 
   return (
@@ -29,6 +67,9 @@ const StudentsAdd = () => {
 
         <form className="form-box" onSubmit={handleSubmit}>
           <h1 className="form-heading">Add Student</h1>
+          {error &&<div>
+            <p className="error-msg">{error}</p>   
+         </div>}
           <div>
             <label className='input-label'>Name :</label>
             <input
@@ -41,12 +82,18 @@ const StudentsAdd = () => {
 
           <div>
             <label className='input-label'>Admission Year :</label>
-            <input
-              type="number"
-              className="input-field"
+            <select
               name="admission_year"
+              className="input-field"
               onChange={handleChange}
-            />
+            >
+              <option value="">Select Year</option>
+            {Array.from({ length: 17 }, (_, i) => 2010 + i).map(year => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+            </select>
           </div>
 
           <div>
@@ -66,12 +113,12 @@ const StudentsAdd = () => {
               name="department"
               onChange={handleChange}
             >
-              <option value="" disabled>Select Department</option>
-              <option value="CSE">CSE</option>
-              <option value="EC">EC</option>
-              <option value="CE">CE</option>
-              <option value="ME">ME</option>
-              <option value="EEE">EEE</option>
+              <option value="" >Select Department</option>
+              <option value="cse">CSE</option>
+              <option value="ec">EC</option>
+              <option value="ce">CE</option>
+              <option value="me">ME</option>
+              <option value="eee">EEE</option>
             </select>
           </div>
 
@@ -79,13 +126,13 @@ const StudentsAdd = () => {
             <label className='input-label'>Sex : </label>
             <div className="flex gap-3">
               <label className='input-label'>
-                <input type="radio" name="gender" value="M" onChange={handleChange} /> Male
+                <input type="radio" name="gender" value="m" onChange={handleChange} /> Male
               </label>
               <label className='input-label'>
-                <input type="radio" name="gender" value="F" onChange={handleChange} /> Female
+                <input type="radio" name="gender" value="f" onChange={handleChange} /> Female
               </label>
               <label className='input-label'>
-                <input type="radio" name="gender" value="O" onChange={handleChange} /> Others
+                <input type="radio" name="gender" value="o" onChange={handleChange} /> Others
               </label>
             </div>
           </div>

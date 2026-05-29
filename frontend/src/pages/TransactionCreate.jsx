@@ -22,7 +22,12 @@ const TransactionCreate = () => {
                 </div>
                 <div>
                     <label htmlFor="" className='input-label'>Time Period</label>
-                    <input type="date" name="" id=""  className='input-field'/>
+                    <select className='input-field'>
+                        <option value="7">7 Days</option>
+                        <option value="14">14 Days</option>
+                        <option value="21">21 Days</option>
+                        <option value="28">28 Days</option>
+                    </select>
                 </div>
                 <div>
                     <button className='btn w-full'>Submit</button>
