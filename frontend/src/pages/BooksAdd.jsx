@@ -8,7 +8,7 @@ const BooksAdd = () => {
   const navigate=useNavigate()
 
   const [formData,setFormData]=useState({
-    name:"",author:"",volume:"",genere:""
+    name:"",author:"",volume:"",genere:"",quantity:0,
   })
 
   const handleChange=(e)=>{
@@ -23,7 +23,7 @@ const BooksAdd = () => {
     navigate('/')
     }catch(error){
       alert(error.response?.data?.error || "something went wrong!")
-      console.log(error)
+      console.log(error.response.data)
     }
   }
 
@@ -59,6 +59,16 @@ const BooksAdd = () => {
             type="text"
             className="input-field"
             name='volume'
+            onChange={handleChange}
+          />
+        </div>
+        
+        <div>
+          <label className='input-label'>Quantity</label>
+          <input
+            type="number"
+            className="input-field"
+            name='quantity'
             onChange={handleChange}
           />
         </div>

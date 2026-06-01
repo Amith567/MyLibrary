@@ -1,6 +1,8 @@
 import React from 'react'
 
 const Card = ({name,department,register_no}) => {
+  
+
   return (
     <>
       <div className="bg-gray-800 rounded-lg p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
@@ -32,11 +34,11 @@ const Card = ({name,department,register_no}) => {
             View
           </button>
 
-          <button className="btn bg-green-600 hover:bg-green-500">
+          <button className="btn bg-green-600 hover:bg-green-500" >
             Edit
           </button>
 
-          <button className="btn bg-red-600 hover:bg-red-500">
+          <button className="btn bg-red-600 hover:bg-red-500" >
             Delete
           </button>
         </div>

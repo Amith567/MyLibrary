@@ -7,6 +7,7 @@ import API from '../api/api'
 
 const StudentsAdd = () => {
   const [error,setError]=useState("")
+  const [loading,setLoading]=useState(false)
   const navigate = useNavigate()
   const [formData, setFormData] = useState({ name: "", admission_year: "", register_no: "", department: "", gender: "" })
 
@@ -15,34 +16,41 @@ const StudentsAdd = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    setLoading(true)
     const name=formData.name.trim()
     if(!name){
       setError("Name required !")
+      setLoading(false)
       return
     }
     if(name.length>20){
       setError("Maximum lenght of name is 20 !")
+      setLoading(false)
       return
     }
     if(!/^[A-Za-z ]+$/.test(name)){
       setError("Name can conatains only letters and space !")
+      setLoading(false)
       return
     }
     if (!/^\d{4}$/.test(formData.admission_year)){
       setError('Invalid year !')
+      setLoading(false)
       return
     }
     if(!/^[A-Z]{3}\d{2}[A-Z]{2,3}\d{3}$/.test(formData.register_no)){
       setError("Invalid register number format !. eg: AWH22CS001 ")
+      setLoading(false)
       return
     }
     if(formData.department.length==0){
       setError("Invalid department !")
+      setLoading(false)
       return
     }
     if(formData.gender.length!=1){
       setError("Invalid gender !")
+      setLoading(false)
       return
     }
 
@@ -53,12 +61,13 @@ const StudentsAdd = () => {
       toast.success("Student added successfully!");
       navigate("/")
     } catch (error) {
-  const errors = error.response?.data?.error;
+      const errors = error.response?.data?.error;
 
-  if (errors?.register_no) {
-    setError(errors.register_no[0]);
-  }
-}
+      if (errors?.register_no) {
+        setError(errors.register_no[0]);}
+    }finally{
+      setLoading(false)
+    }
   }
 
   return (
@@ -138,8 +147,8 @@ const StudentsAdd = () => {
             </div>
           </div>
 
-          <button className="btn" >
-            Add Student
+          <button className={loading ? "btn cursor-not-allowed opacity-50" : "btn"}  disabled={loading}>
+            {loading? "Submitting..." : "Submit"}
           </button>
 
         </form>
