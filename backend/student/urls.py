@@ -1,10 +1,7 @@
 from django.urls import path
-from .views import add,edit,delete,list,detail
+from .views import ListCreateStudentView,DetailUpdateDeleteStudentView
 
 urlpatterns=[
-    path('add/',add),
-    path('<int:id>/edit/',edit),
-    path('<int:id>/delete/',delete),
-    path('list/',list),
-    path('<int:id>/detail/',detail),
+    path('student/',ListCreateStudentView.as_view()),
+    path('student/<int:pk>/',DetailUpdateDeleteStudentView.as_view()),
 ]

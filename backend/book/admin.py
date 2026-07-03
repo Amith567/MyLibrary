@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import Book
+from .models import Book,Genere
 
-class BookAdmin(admin.ModelAdmin):
-    list_display=['id','name','volume']
-
-admin.site.register(Book,BookAdmin)
+admin.site.register(Book)
+admin.site.register(Genere)
+# Register your models here.

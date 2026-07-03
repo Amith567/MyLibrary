@@ -1,8 +1,6 @@
 from django.urls import path
-from .views import create,close,list
+from .views import ListCreateTransactionView
 
 urlpatterns=[
-    path('create/',create),
-    path('<int:id>/close/',close),
-    path('list/',list),
+    path('transaction/',ListCreateTransactionView.as_view()),
 ]

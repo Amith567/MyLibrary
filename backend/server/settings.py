@@ -1,25 +1,12 @@
-import os
 from pathlib import Path
-from dotenv import load_dotenv
-load_dotenv()
-
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
+import os
+from dotenv import load_dotenv
+load_dotenv(BASE_DIR/".env")
 SECRET_KEY = os.getenv('SECRET_KEY')
+DEBUG =os.getenv("DEBUG")=='True'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG") == "True"
-
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
-
-# Application definition
+ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -28,14 +15,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders', 
-    'authentication',
-    'book',
-    'dashboard',
+    'corsheaders',
+    'rest_framework',
+    'account',
+    'book', 
     'student',
     'transaction',
-    'rest_framework',
 ]
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+}
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', 
@@ -48,7 +42,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'backend.urls'
+ROOT_URLCONF = 'server.urls'
 
 TEMPLATES = [
     {
@@ -64,33 +58,40 @@ TEMPLATES = [
         },
     },
 ]
-CORS_ALLOWED_ORIGINS = [
+CORS_ALLOWED_ORIGINS=[
+    "http://localhost:5173",    
+]
+CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
 ]
+CORS_ALLOW_CREDENTIALS=True
 
-CORS_ALLOW_CREDENTIALS = True
-
-
-WSGI_APPLICATION = 'backend.wsgi.application'
+WSGI_APPLICATION = 'server.wsgi.application'
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+]
+SESSION_COOKIE_SAMESITE = "Lax"
+CSRF_COOKIE_SAMESITE = "Lax"
 
 
 # Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+
+# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        'PORT': os.getenv('DB_PORT', '5432'),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME":os.getenv("DB_NAME"),
+        "PORT":os.getenv("DB_PORT"),
+        "USER":os.getenv("DB_USER"),
+        "PASSWORD":os.getenv("DB_PASSWORD")
     }
 }
 
 
 # Password validation
-# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
+# https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -109,23 +110,25 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
+# https://docs.djangoproject.com/en/6.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
+# https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False

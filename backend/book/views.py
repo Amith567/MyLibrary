@@ -1,40 +1,36 @@
-from rest_framework.decorators import api_view
-from .serializer import BookSerializer
-from .models import Book
+from rest_framework.views import APIView
+from rest_framework import status
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
+from .models import Book
+from .serializers import BookSerializer
 
-@api_view(['GET'])
-def list(request):
-    book=Book.objects.all()
-    serializer=BookSerializer(book,many=True)
-    return Response(serializer.data)
-
-@api_view(['POST'])
-def add(request):
-    serializer=BookSerializer(data=request.data)
-    if serializer.is_valid():
+class ListCreateBookView(APIView):
+    def get(self,request):
+        books=Book.objects.all()
+        serializer=BookSerializer(books,many=True)
+        return Response({"message":serializer.data},status=status.HTTP_200_OK)
+    def post(self,request):
+        serializer=BookSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response({"message":"book added succesfully","data":serializer.data},status=201)
-    return Response({"message":"something went wrong","error":serializer.errors},status=400)
+        return Response({"data":serializer.data},status=status.HTTP_201_CREATED)
 
-@api_view(['DELETE'])
-def delete(request,id):
-    try:
-        book=Book.objects.get(id=id)
-        book.delete()
-        return Response({"message":"book deleted"},status=200)
-    except Book.DoesNotExist:
-        return Response({"error":"book not founded"},status=404)
-
-@api_view(['PATCH'])
-def edit(request,id):
-    try:
-        book=Book.objects.get(id=id)
+class DetailDeleteUpdateBookView(APIView):
+    def get(self,request,pk):
+        book=get_object_or_404(Book,id=pk)
+        serializer=BookSerializer(book)
+        return Response({"data":serializer.data},status=status.HTTP_200_OK)
+    def patch(self,request,pk):
+        book=get_object_or_404(Book,id=pk)
         serializer=BookSerializer(book,data=request.data,partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response({"message":"book updated","data":serializer.data},status=200)
-    except Book.DoesNotExist:
-        return Response({"message":"book not exist"},status=404)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"data":serializer.data},status=status.HTTP_200_OK)
+    def delete(self,request,pk):
+        book=get_object_or_404(Book,id=pk)
+        book.delete()
+        return Response({"data":"deleted succesfully"},status=status.HTTP_204_NO_CONTENT)
+
 

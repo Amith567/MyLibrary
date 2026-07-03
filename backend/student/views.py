@@ -1,46 +1,34 @@
-from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializer import StudentSerializer
+from .serializers import StudentSerializer
 from .models import Student
 from django.shortcuts import get_object_or_404
+from rest_framework import status
 
 
-@api_view(['GET'])
-def list(request):
-    student=Student.objects.all()
-    serializer=StudentSerializer(student,many=True)
-    return Response(serializer.data,status=200)
-
-@api_view(['GET'])
-def detail(request,id):
-        student=get_object_or_404(Student,id=id)
-        serializer=StudentSerializer(student)
-        return Response(serializer.data)
-
-@api_view(['POST'])
-def add(request):
-    serializer=StudentSerializer(data=request.data)
-    if serializer.is_valid():
+class ListCreateStudentView(APIView):
+    def get(self,request):
+        student=Student.objects.all()
+        serializer=StudentSerializer(student,many=True)
+        return Response({"data":serializer.data},status=status.HTTP_200_OK)
+    def post(self,request):
+        serializer=StudentSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response({"message":"student added successully","data":serializer.data},status=201)
-    return Response({"error":serializer.errors},status=400)
+        return Response({"data":serializer.data},status=status.HTTP_201_CREATED)
 
-@api_view(['DELETE'])
-def delete(request,id):
-    try:
-        student=Student.objects.get(id=id)
-        student.delete()
-        return Response({"message":"student deleted succesfully"},status=200)
-    except Student.DoesNotExist:
-        return Response({"error":"student not found"},status=404)
-
-@api_view(['PATCH'])
-def edit(request,id):
-    try:
-        student=Student.objects.get(id=id)
+class DetailUpdateDeleteStudentView(APIView):
+    def get(self,request,pk):
+        student=get_object_or_404(Student,id=pk)
+        serializer=StudentSerializer(student)
+        return Response({"data":serializer.data},status=status.HTTP_200_OK)
+    def patch(self,request,pk):
+        student=get_object_or_404(Student,id=pk)
         serializer=StudentSerializer(student,data=request.data,partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response({"message":"student updated !","data":serializer.data},status=200)
-    except Student.DoesNotExist:
-        return Response({"error":"student not found"},status=404)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({"data":serializer.data},status=status.HTTP_200_OK)
+    def delete(self,request,pk):
+        student=get_object_or_404(Student,id=pk)
+        student.delete()
+        return Response({"message":"deleted succesfully."},status=status.HTTP_204_NO_CONTENT)
