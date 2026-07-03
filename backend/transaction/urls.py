@@ -1,6 +1,8 @@
 from django.urls import path
-from .views import ListCreateTransactionView
+from .views import ListCreateTransactionView,DetailUpdateDeleteTransactionView,CheckStudentEligibilityView
 
 urlpatterns=[
-    path('transaction/',ListCreateTransactionView.as_view()),
+    path('',ListCreateTransactionView.as_view()),
+    path('<int:pk>/',DetailUpdateDeleteTransactionView.as_view()),
+    path('eligible/',CheckStudentEligibilityView.as_view()),
 ]

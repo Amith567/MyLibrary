@@ -6,5 +6,5 @@ class TransactionSerializer(serializers.ModelSerializer):
     book_name=serializers.CharField(source='book.name',read_only=True)
     class Meta:
         model=Transaction
-        fields=['id','student','book','taken_date','submission_date','submitted_date','transaction_id','is_active','student_name','book_name','transaction_id']
-        read_only_fields=['id','transaction_id']
+        fields=['id','student','book','taken_date','submission_date','submitted_date','transaction_id','is_active','student_name','book_name','transaction_id','period']
+        read_only_fields=['id','transaction_id','submitted_date','is_active','submission_date']

@@ -31,6 +31,15 @@ class DetailDeleteUpdateBookView(APIView):
     def delete(self,request,pk):
         book=get_object_or_404(Book,id=pk)
         book.delete()
-        return Response({"data":"deleted succesfully"},status=status.HTTP_204_NO_CONTENT)
+        return Response({"data":"deleted succesfully."},status=status.HTTP_204_NO_CONTENT)
 
-
+class CheckBookAvailability(APIView):
+    def get(self,request):
+        book_id=request.query_params.get('book_id')
+        if not book_id:
+            return Response({"messge":"book id is required."})
+        book=get_object_or_404(Book,book_id=book_id)
+        quantity=book.quantity
+        if quantity <1:
+            return Response({"messge":"book is out of stock."},status=status.HTTP_200_OK)
+        return Response({"messge":f"{quantity} nos availble."})
