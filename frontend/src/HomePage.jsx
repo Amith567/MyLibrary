@@ -28,29 +28,3 @@ return (
 }
 
 export default HomePage
-
-
-    // <div className="home-box bg-[#3c82f6]">
-    //     <p className='text-3xl text-white'>1200</p>
-    //     <p className='mt-3 text-gray-100'>Total Books</p>
-    // </div>
-    // <div className="home-box bg-[#0ea23b]">
-    //             <p className='text-3xl text-white'>850</p>
-    //     <p className='mt-3 text-gray-100'>Available Books</p>
-    // </div>
-    // <div className="home-box bg-[#f98500]">
-    //             <p className='text-3xl text-white'>230</p>
-    //     <p className='mt-3 text-gray-100'>Borrowed Books</p>
-    // </div>
-    // <div className="home-box bg-[#6D28D9]">
-    //             <p className='text-3xl text-white'>450</p>
-    //     <p className='mt-3 text-gray-100'>Students</p>
-    // </div>
-    // <div className="home-box bg-[#0598AF]">
-    //             <p className='text-3xl text-white'>56</p>
-    //     <p className='mt-3 text-gray-100'>Active Transactions</p>
-    // </div>
-    // <div className="home-box bg-[#E5362A]">
-    //             <p className='text-3xl text-white'>18</p>
-    //     <p className='mt-3 text-gray-100'>Overdue Books</p>
-    // </div>
