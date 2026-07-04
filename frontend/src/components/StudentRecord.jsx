@@ -9,10 +9,10 @@ const StudentRecord = () => {
             <div className='w-full mt-3 border-b-1 border-gray-300 shadow-xs'>
             <div className='flex justify-evenly  py-3 rounded-md capitalize break-all'>
                 <div className="book-record-title w-35">Student ID</div>
-                <div className="book-record-title w-60 flex-wrap">Name</div>
-                <div className="book-record-title w-35">Department</div>
-                <div className="book-record-title w-30">Roll No</div>
-                <div className="book-record-title w-30">Admission Year</div>
+                <div className="book-record-title w-60 flex-wrap hidden md:block">Name</div>
+                <div className="book-record-title w-35 hidden md:block">Department</div>
+                <div className="book-record-title w-30 hidden lg:block">Roll No</div>
+                <div className="book-record-title w-30 hidden lg:block">Admission Year</div>
                 <div className="book-record-title w-30 flex gap-8">
                         <Link><FaEye className='text-blue-500'/></Link>
                         <Link><MdModeEditOutline className='text-blue-500' /></Link>
