@@ -4,16 +4,16 @@ import { MdModeEditOutline } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 
-const BookRecord = ({book}) => {
+
+const TransactionRecord = () => {
   return (
         <div className='w-full mt-3 border-b-1 border-gray-300 shadow-xs'>
             <div className='flex justify-evenly  py-3 rounded-md capitalize break-all'>
-                <div className="book-record-title w-35 ">{book.book_id}</div>
-                <div className="book-record-title w-60 ">{book.name}</div>
-                <div className="book-record-title w-35 ">{book.author}</div>
-                <div className="book-record-title w-30 ">{book.category}</div>
-                <div className="book-record-title w-20">{book.quantity}</div>
-                <div className="book-record-title w-20">{book.quantity}</div>
+                <div className="book-record-title w-35">Transaction ID</div>
+                <div className="book-record-title w-50 flex-wrap">Book Name</div>
+                <div className="book-record-title w-40">Student Name</div>
+                <div className="book-record-title w-30">Taken Date</div>
+                <div className="book-record-title w-30">Status</div>
                 <div className="book-record-title w-30 flex gap-8">
                     <Link><FaEye className='text-blue-500'/></Link>
                     <Link><MdModeEditOutline className='text-blue-500' /></Link>
@@ -25,4 +25,4 @@ const BookRecord = ({book}) => {
   )
 }
 
-export default BookRecord
+export default TransactionRecord
