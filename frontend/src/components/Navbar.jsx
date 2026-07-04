@@ -1,54 +1,17 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React from 'react'
+import { CiSearch } from "react-icons/ci";
+import { FaRegBell } from "react-icons/fa";
 
 const Navbar = () => {
-  const navigate = useNavigate()
-  const [navBtn, setNavBtn] = useState(false)
-
-  const onLogout = () => {
-    localStorage.removeItem("isLoggined")
-    navigate('/login')
-  }
-
   return (
-    <>
-      {/* Navbar */}
-      <div className='w-full h-16 bg-[#1E293B] px-5 flex justify-between items-center fixed top-0 left-0 z-50'>
-
-        <p className='text-3xl text-[#F8FAFC] font-bold cursor-pointer'>
-          <Link to="/">MyLibrary</Link>
-        </p>
-
-        <div
-          className='text-white text-3xl cursor-pointer'
-          onClick={() => setNavBtn(!navBtn)}
-        >
-          ☰
+    <div className='w-[85vw]  h-20 border-b-1 border-gray-200 shadow-sm flex items-center justify-between px-10'>
+        <span className='flex gap-2'><input type="text"  className=' outline-none px-3 py-2 rounded-full w-80 shadow-t-xl  border-gray-200 border-y-1 text-sm' placeholder='Search...'/><CiSearch className='mt-1 w-9 h-9 bg-gray-50 rounded-full p-1'/></span>
+        <div className='flex gap-3 '>
+        <FaRegBell className='w-5 h-5'/>
+        <img src="profile.jpg" alt="" className='w-6 h-6 rounded-full' />
+        <p className='font-bold text-sm mt-1'>Amith P</p>
         </div>
-
-      </div>
-
-      {/* Menu */}
-      <div
-        className={`fixed top-16 left-0 w-full bg-[#1E293B] text-gray-200 
-        overflow-hidden transition-all duration-500 ease-in-out z-40
-        ${navBtn ? 'max-h-60 p-4 opacity-100' : 'max-h-0 opacity-0 p-0'}
-        `}
-      >
-        <div className='flex flex-col gap-3'>
-          <p className='cursor-pointer'>Home</p>
-          <p className='cursor-pointer'>Profile</p>
-          <p className='cursor-pointer'>Search</p>
-
-          <button
-            onClick={onLogout}
-            className='bg-slate-500 p-2 rounded-md hover:bg-slate-400'
-          >
-            Logout
-          </button>
-        </div>
-      </div>
-    </>
+    </div>
   )
 }
 
