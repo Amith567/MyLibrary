@@ -16,7 +16,7 @@ const HomeListCardItems = ({data}) => {
 
 const HomeListCard = ({ heading,HomeListCardItemsData }) => {
     return (
-        <div className='w-100 rounded-md border border-gray-300 inset-shadow-sm p-6'>
+        <div className='w-100 lg:w-[500px] rounded-md border border-gray-300 inset-shadow-sm p-6'>
             <p className='text-xl font-bold text-gray-500 pb-2'>{heading}</p>
             {
             HomeListCardItemsData.map((data) => (

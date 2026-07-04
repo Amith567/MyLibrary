@@ -10,12 +10,15 @@ import TransactionPage from './TransactionPage'
 import ReportPage from './ReportPage'
 import SettingPage from './SettingPage'
 import Profile from './Profile'
+import ProtectedRoute from './components/ProtectedRoute'
+
 
 
 const App = () => {
   return (
     
     <Routes>
+      <Route element={<ProtectedRoute/>}>
       <Route element={<Layout/>}>
         <Route path='/' element={<HomePage/>}/>
         <Route path='/book' element={<BookPage/>}/>
@@ -24,7 +27,7 @@ const App = () => {
         <Route path='/report' element={<ReportPage/>}/>
         <Route path='/setting' element={<SettingPage/>}/>
         <Route path='/profile' element={<Profile/>}/>
-
+      </Route>
       </Route>
       <Route path='/login' element={<LoginPage/>}/>
       <Route path='/register' element={<RegisterPage/>}/>

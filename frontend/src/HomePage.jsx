@@ -19,7 +19,7 @@ return (
 ))}
 </div>
 
-<div className='w-full mt-6 flex flex-col items-center lg:flex-row lg:justify-around'>
+<div className='w-full mt-6 flex flex-col items-center gap-5 lg:flex-row  lg:justify-around'>
     <HomeListCard heading={"Recently Added Books"} HomeListCardItemsData={HomeListCardItemsDataF}/>
     <HomeListCard heading={"Recently Returned Books"} HomeListCardItemsData={HomeListCardItemsDataS}/>
 </div>

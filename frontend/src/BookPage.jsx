@@ -19,7 +19,7 @@ const BookPage = () => {
 
     },[])
   return (
-    <div>
+    <div className='min-h-screen'>
         <div className='w-full flex justify-between'>
             <div className='text-2xl font-bold'>Books</div>
             <form action="" className='flex gap-10'>

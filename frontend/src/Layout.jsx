@@ -10,14 +10,15 @@ const Layout = () => {
     <div className="min-h-screen flex flex-col">
         <div className="flex flex-1">
             <Sidebar/>
-            <div className="flex-1 flex flex-col">
-                <Navbar/>
-                <div className="flex-1 p-6">
+            <div className="flex-1 flex flex-col ">
+                <Navbar className="w-full"/>
+                <div className="flex-1 p-6 w-full">
                     <Outlet/>
                 </div>
+                <Footer className="w-full"/>
             </div>
         </div>
-        <Footer/>
+        
     </div>
   )
 }

@@ -45,12 +45,12 @@ return (
         <div className='flex flex-col md:flex-row items-center justify-around w-full h-screen p-3'>
             <div className='text-gray-100 flex flex-col gap-10'>
                 <p className='text-2xl md:text-4xl font-bold '>Welcome To MyLibrary</p>
-                <div className='hidden md:block'>
+                <div className='hidden md:block font-light'>
                 <p>Simplify the way you manage books, members, and borrowing records.</p>
                 <p>Everything your library needs, all in one secure platform.</p>
                 </div>
             </div>
-            <form onSubmit={handleClick} className='w-[300px] md:w-[400px] lg:[500px] rounded-md p-5 bg-white/15 backdrop-blur-2xl border border-white/30  shadow-[0_8px_32px_rgba(0,0,0,0.15)] text-white brightness-120'>
+            <form onSubmit={handleClick} className='w-[300px] md:w-[400px] lg:[500px] rounded-xl p-5 bg-white/15 backdrop-blur-2xl border border-white/30  shadow-[0_8px_32px_rgba(0,0,0,0.15)] text-white brightness-110'>
                 <p className=' text-2xl font-bold'>Welcome Back</p>
                 <p className='text-sm font-light'>Login to your account</p>
                 { error && <p className='text-sm pt-2 text-red-500 text-center'>{error}.</p>}

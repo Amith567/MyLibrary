@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 const Sidebar = () => {
 
   return (
-    <div className='w-64 bg-[#041633] sticky top-0 h-screen '>
+    <div className='hidden w-64 bg-[#041633] h-auto md:block'>
         <p className='py-10 text-center text-white text-2xl font-bold'>MyLibrary</p>
         <div className='flex flex-col gap-8 pl-5 pr-10'>
         <Link to='/'><p className='sidebar-items'><RxDashboard className='sidebar-icons'/>Dashboard</p></Link>
