@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { RxDashboard } from "react-icons/rx";
 import { FaBook } from "react-icons/fa";
 import { BsFillPersonLinesFill } from "react-icons/bs";
@@ -7,9 +7,12 @@ import { LuFileSpreadsheet } from "react-icons/lu";
 import { IoSettingsSharp } from "react-icons/io5";
 import { TbLogout } from "react-icons/tb";
 import { Link } from 'react-router-dom';
+
+
 const Sidebar = () => {
+
   return (
-    <div className='w-64 bg-[#041633] sticky top-0 h-screen hidden sm:block'>
+    <div className='w-64 bg-[#041633] sticky top-0 h-screen '>
         <p className='py-10 text-center text-white text-2xl font-bold'>MyLibrary</p>
         <div className='flex flex-col gap-8 pl-5 pr-10'>
         <Link to='/'><p className='sidebar-items'><RxDashboard className='sidebar-icons'/>Dashboard</p></Link>

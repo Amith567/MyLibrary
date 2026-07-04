@@ -1,8 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FiPlus } from "react-icons/fi";
 import BookRecord from './components/BookRecord';
+import API from './axios';
 
 const BookPage = () => {
+    const [books,setBooks]=useState([])
+    useEffect(()=>{
+        const loadbooks=async()=>{
+            try{
+                const res=await API.get("api/book/")
+                console.log(res.data)
+                setBooks(res.data)
+            }catch(err){
+                alert("something went wrong.")
+            }
+        }
+        loadbooks()
+
+    },[])
   return (
     <div>
         <div className='w-full flex justify-between'>
@@ -22,7 +37,10 @@ const BookPage = () => {
                 <div className="book-record-title w-20">Available</div>
                 <div className="book-record-title w-30">Actions</div>
             </div>
-            <BookRecord/>
+            {books.map((book)=>(
+                <BookRecord key={book.id} book={book}/>
+            ))}
+            
         </div>
     </div>
   )
