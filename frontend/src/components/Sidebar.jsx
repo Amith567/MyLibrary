@@ -18,7 +18,7 @@ const Sidebar = () => {
         <Link to='/transaction'><p className='sidebar-items '><GrTransaction className='sidebar-icons'/>Transactions</p></Link>
         <Link to='/report'><p className='sidebar-items '><LuFileSpreadsheet className='sidebar-icons'/>Reports</p></Link>
         <Link to='/setting'><p className='sidebar-items '><IoSettingsSharp className='sidebar-icons'/>Settings</p></Link>
-        <p className='sidebar-items '><TbLogout className='sidebar-icons'/>Logout</p>
+        <Link to='/login'><p className='sidebar-items '><TbLogout className='sidebar-icons'/>Logout</p></Link>
         </div>
     </div>
   )

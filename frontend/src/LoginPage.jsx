@@ -16,7 +16,8 @@ const LoginPage = () => {
         setLoading(true)
         e.preventDefault()
         try{
-            await API.post("api/account/login/",{"username":userName,"password":password})
+            const res= await API.post("api/account/login/",{"username":userName,"password":password})
+            localStorage.setItem("username",res.data.username)
             navigate('/',{replace:true})
         }catch (err) {
             if (err.response) {

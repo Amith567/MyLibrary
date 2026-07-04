@@ -6,4 +6,6 @@
     @apply w-7 h-5 pr-2;
 }.home-box{
     @apply w-70 h-40  rounded-md hover:brightness-120 hover:scale-102 cursor-pointer p-10;
+}.book-record-title{
+    @apply font-semibold;
 }

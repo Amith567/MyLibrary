@@ -10,7 +10,7 @@ const Navbar = () => {
         <div className='flex gap-3 '>
         <FaRegBell className='w-5 h-5'/>
         <img src="profile.jpg" alt="" className='w-6 h-6 rounded-full' />
-        <Link to='/profile'><p className='font-bold text-sm mt-1'>Amith P</p></Link>
+        <Link to='/profile'><p className='font-bold text-sm mt-1 capitalize'>{localStorage.getItem("username")}</p></Link>
         </div>
     </div>
   )
