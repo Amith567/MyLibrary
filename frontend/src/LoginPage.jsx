@@ -17,7 +17,7 @@ const LoginPage = () => {
         e.preventDefault()
         try{
             await API.post("api/account/login/",{"username":userName,"password":password})
-            navigate('/home',{replace:true})
+            navigate('/',{replace:true})
         }catch (err) {
             if (err.response) {
                 if (err.response.status === 403) {

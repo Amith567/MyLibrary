@@ -4,4 +4,6 @@
     @apply text-white font-bold flex text-sm p-4 hover:bg-[#0c55e5] transition-colors duration-200 rounded-xl;
 }.sidebar-icons{
     @apply w-7 h-5 pr-2;
+}.home-box{
+    @apply w-70 h-40  rounded-md hover:brightness-120 hover:scale-102 cursor-pointer p-10;
 }
