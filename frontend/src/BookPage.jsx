@@ -9,8 +9,8 @@ const BookPage = () => {
         const loadbooks=async()=>{
             try{
                 const res=await API.get("api/book/")
-                console.log(res.data)
                 setBooks(res.data)
+                console.log(books)
             }catch(err){
                 alert("something went wrong.")
             }

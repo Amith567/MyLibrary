@@ -1,8 +1,25 @@
 import { FiPlus } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import TransactionRecord from "./components/TransactionRecord";
+import { useEffect, useState } from "react";
+import API from "./axios";
 
 const TransactionPage = () => {
+    const [transactions,setTransactions]=useState([])
+    const [error,setError]=useState('')
+    useEffect(()=>{
+        
+        const loadTransaction=async()=>{
+        try{
+            const res=await API.get("api/transaction")
+            setTransactions(res.data.data)
+        }catch(err){
+            alert("something went wrong.")
+            setError(res.response.data)
+        }
+        }
+        loadTransaction()
+},[])
   return (
     <div className='min-h-screen'>
         <div className='w-full flex justify-between flex-col md:flex-row gap-4'>
@@ -24,7 +41,11 @@ const TransactionPage = () => {
                 <div className="book-record-title w-30 hidden xl:block">Status</div>
                 <div className="book-record-title w-30">Actions</div>
             </div>
-            <TransactionRecord/> <TransactionRecord/> <TransactionRecord/> <TransactionRecord/>
+            {
+                transactions.map((transaction)=>(
+                    <TransactionRecord key={transaction.id} transaction={transaction}/>
+                ))
+            }
         </div>            
             
 

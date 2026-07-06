@@ -1,16 +1,31 @@
 import { FiPlus } from "react-icons/fi";
 import StudentRecord from "./components/StudentRecord";
-
+import { useEffect, useState } from "react";
+import API from "./axios";
 
 const StudentPage = () => {
+    const [error,setError]=useState('')
+    const [students,setStudents]=useState([])
+    useEffect(()=>{
+        const loadStudent =async()=>{
+        try{
+            const res=await API.get("api/student")
+            setStudents(res.data)
+        }catch(err){
+            // setError(res.response.data)
+            alert("something went wrong")
+        }
+        }
+        loadStudent()
+    },[])
   return (
     <div className='min-h-screen'>
         <div className='w-full flex justify-between flex-col md:flex-row gap-4'>
             <div className='text-xl md:text-2xl font-bold'>Students</div>
             <div className="flex flex-col gap-2 md:flex-row">
-            <form action="" className=''>
+            {/* <form action="" className=''> */}
                 <input type="text" className='px-3 py-2 rounded-md border-1 border-gray-300 w-80 text-sm outline-none' placeholder='Search student...'/>
-            </form>
+            {/* </form> */}
         <button className='w-40 h-10 bg-blue-500 flex justify-center gap-5 items-center text-white rounded-md'><FiPlus className='text-white text-2xl'/>Add Student</button>
         </div>
         </div>
@@ -23,11 +38,10 @@ const StudentPage = () => {
                 <div className="book-record-title w-30 hidden lg:block">Admission Year</div>
                 <div className="book-record-title w-30">Actions</div>
             </div>
-            <StudentRecord/>
-            <StudentRecord/>
-            <StudentRecord/>
-            <StudentRecord/>
-            <StudentRecord/>
+            {students.map((student)=>(
+                <StudentRecord key={student.id} student={student} />
+            ))}
+            
         </div>            
             
 
