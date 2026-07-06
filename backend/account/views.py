@@ -12,7 +12,6 @@ from django.utils.decorators import method_decorator
 @ensure_csrf_cookie
 def csrf(request):
     token=get_token(request)
-    print(token)
     return JsonResponse({"Succes":True,"csrf":token})
 
 class UserRegisterView(APIView):
@@ -31,7 +30,7 @@ class UserLoginView(APIView):
         user=serializer.validated_data['user']
         login(request,user)
         request.session["username"]=user.username
-        return Response({"csrf":get_token(request),"session":request.session.session_key},status=status.HTTP_200_OK)
+        return Response({"csrf":get_token(request),"session":request.session.session_key,"username":request.user.username},status=status.HTTP_200_OK)
 
 class UserLogoutView(APIView):
     def post(self,request):

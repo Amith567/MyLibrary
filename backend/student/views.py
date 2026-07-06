@@ -10,7 +10,7 @@ class ListCreateStudentView(APIView):
     def get(self,request):
         student=Student.objects.all()
         serializer=StudentSerializer(student,many=True)
-        return Response({"data":serializer.data},status=status.HTTP_200_OK)
+        return Response(serializer.data,status=status.HTTP_200_OK)
     def post(self,request):
         serializer=StudentSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)

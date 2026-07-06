@@ -8,9 +8,9 @@ from .serializers import BookSerializer
 
 class ListCreateBookView(APIView):
     def get(self,request):
-        books=Book.objects.all()
+        books=Book.objects.all().order_by("pk")
         serializer=BookSerializer(books,many=True)
-        return Response({"message":serializer.data},status=status.HTTP_200_OK)
+        return Response(serializer.data,status=status.HTTP_200_OK)
     def post(self,request):
         serializer=BookSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)

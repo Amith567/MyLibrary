@@ -14,6 +14,7 @@ class Book(models.Model):
     quantity=models.PositiveIntegerField()
     category=models.ForeignKey(Genere,on_delete=models.CASCADE,related_name='books')
     book_id=models.CharField(blank=True,max_length=20,unique=True)
+    added_date=models.DateField(timezone.now())
     def __str__(self):
         return f"{self.name}  v - {self.volume}"
     def save(self,*args,**kwargs):

@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404
 
 class ListCreateTransactionView(APIView):
     def get(self,request):
-        transactions=Transaction.objects.all()
+        transactions=Transaction.objects.all().order_by('-is_active','taken_date')
         serializer=TransactionSerializer(transactions,many=True)
         return Response({"data":serializer.data},status=status.HTTP_200_OK)
     def post(self,request):
