@@ -24,9 +24,11 @@ class DashboardAggregatedValuesView(APIView):
     def get(self,request):
         total_book=Book.objects.aggregate(tb=Sum('quantity'))['tb'] or 0
         availble_book=Book.objects.aggregate(ab=Sum('avilable_quantity'))['ab'] or 0
+        transaction_count=Transaction.objects.count()
         total_student=Student.objects.count()
         active_transaction=Transaction.objects.filter(is_active=True).count()
         overdue=Transaction.objects.filter(submission_date__lt=timezone.now(),is_active=True).count() or 0
+
         HomeCardData=[
     {
         "id":1,
@@ -40,8 +42,8 @@ class DashboardAggregatedValuesView(APIView):
         "color":"#0ea23b"
     },{
         "id":3,
-        "no":230,
-        "title":"Borrowed Books",
+        "no":transaction_count,
+        "title":"Total Transactions",
         "color":"#f98500"
     },{
         "id":4,
