@@ -11,13 +11,16 @@ class Book(models.Model):
     name=models.CharField(max_length=100)
     volume=models.PositiveIntegerField()
     author=models.CharField(max_length=100)
-    quantity=models.PositiveIntegerField()
+    quantity=models.PositiveIntegerField(default=1)
+    avilable_quantity=models.PositiveIntegerField()
     category=models.ForeignKey(Genere,on_delete=models.CASCADE,related_name='books')
     book_id=models.CharField(blank=True,max_length=20,unique=True)
     added_date=models.DateField(timezone.now())
     def __str__(self):
         return f"{self.name}  v - {self.volume}"
     def save(self,*args,**kwargs):
+        if self.pk is None:
+            self.avilable_quantity=self.quantity
         super().save(*args,**kwargs)
         if not self.book_id:
             self.book_id=f"BK000{self.category.code}{self.pk}"

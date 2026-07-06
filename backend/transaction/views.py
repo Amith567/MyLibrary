@@ -2,8 +2,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Transaction
+from book.models import Book
 from .serializers import TransactionSerializer
 from django.shortcuts import get_object_or_404
+from django.utils import timezone
 
 class ListCreateTransactionView(APIView):
     def get(self,request):
@@ -31,6 +33,15 @@ class DetailUpdateDeleteTransactionView(APIView):
         transaction=get_object_or_404(Transaction,id=pk)
         transaction.delete()
         return Response({"messge":"deleted"},status=status.HTTP_204_NO_CONTENT)
+    def post(self,request,pk):
+        transaction=get_object_or_404(Transaction,id=pk)
+        transaction.is_active=False
+        transaction.submitted_date=timezone.now()
+        book=Book.objects.get(id=transaction.book.id)
+        book.avilable_quantity+=1
+        book.save()
+        transaction.save()
+        return Response(status=status.HTTP_200_OK)
 
 class CheckStudentEligibilityView(APIView):
     def get(self,request):
@@ -38,7 +49,6 @@ class CheckStudentEligibilityView(APIView):
         active_tran_count=Transaction.objects.filter(
             student__id=stud_id,
             is_active=True).count()
-        
         if active_tran_count<3:
             return Response({"message":"user is eligible"},status=status.HTTP_200_OK)
         else:
